@@ -9,6 +9,7 @@ const cors = require("cors");
 // routes
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin/auth');
+const postroutes = require('./routes/posts');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
@@ -19,6 +20,7 @@ env.config();
 
 // mongobd connection
 // mongodb+srv://<username>:<password>@cluster0.giumd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// mongodb+srv://safeTransport:safeTransport@cluster0.wskzt.mongodb.net/safeTransport?retryWrites=true&w=majority
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.wskzt.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`,
@@ -37,6 +39,7 @@ app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', cartRoutes);
+app.use('/api', postroutes);
 
 
 app.listen(process.env.PORT, () => {
